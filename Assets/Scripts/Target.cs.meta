@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 32b798a68ee259947b851786b2d9f138
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - explosionParticle: {instanceID: 0}
+  - gameSounds: {instanceID: 0}
+  - looseSound: {instanceID: 0}
+  - clickSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
