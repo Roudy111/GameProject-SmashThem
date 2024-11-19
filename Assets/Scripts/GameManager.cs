@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public bool gameIsOn; // main condition for running game loops within the game -- it should be assigned as condition to all methods within the game play loops
+    private bool isPaused; // condition for pausing the game
 
     // UI Elements
     [Header("UI Elements")]
@@ -39,6 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject startUi;  //The parent object of the Ui elements in startgame menu
     [SerializeField] TextMeshProUGUI healthLives; // the text ui for showing the health status 
     [Space(30)]
+    [SerializeField] GameObject PauseFrame; // The parent object of the pause menu
+
+
 
     [HideInInspector]
     public int lives;   
@@ -70,7 +74,13 @@ public class GameManager : MonoBehaviour
     public AudioClip scoreLoosSfx;
 
 
-
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangePauseStatus();
+        }
+    }
 
     //Stats of the Game 
 
@@ -132,7 +142,23 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    void ChangePauseStatus()
+    {
+        if (!isPaused)
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+            PauseFrame.gameObject.SetActive(true);
+            gameIsOn = false;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+            PauseFrame.gameObject.SetActive(false);
+            gameIsOn = true;
+        }
+    }
 
 
     private IEnumerator FadeInVingnette()
