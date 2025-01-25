@@ -79,14 +79,18 @@ public class ClickAndSwap : MonoBehaviour
 
         }
         if(collision.gameObject.tag == "Main Targets")
+    {
+        // Get the particle system from the Target component
+        var targetComponent = collision.gameObject.GetComponent<Target>();
+        if (targetComponent != null && targetComponent.explosionParticle != null)
         {
-            Destroy(collision.gameObject);
-            gameManager.playerAudio.PlayOneShot(gameManager.clickSfx);
-
-            gameManager.updateScore(2);
-      
-            
-
+            Instantiate(targetComponent.explosionParticle, collision.transform.position, 
+                       targetComponent.explosionParticle.transform.rotation);
         }
+        
+        Destroy(collision.gameObject);
+        gameManager.playerAudio.PlayOneShot(gameManager.clickSfx);
+        gameManager.updateScore(2);
+    }
     }
 }
